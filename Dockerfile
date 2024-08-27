@@ -1,4 +1,4 @@
-FROM python:2.7.14-stretch
+FROM python:2.7.16-buster
 #FROM python:2.7-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
