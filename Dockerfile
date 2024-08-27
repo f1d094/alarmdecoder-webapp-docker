@@ -1,10 +1,10 @@
 FROM python:2.7.14
 #FROM python:2.7-slim
 
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    # this list of deps is taken from the alarmdecoder README, with a few removed
-    sendmail libffi-dev build-essential libssl-dev curl libpcre3-dev libpcre++-dev zlib1g-dev libcurl4-openssl-dev autoconf automake avahi-daemon locales dosfstools sqlite3 git sudo \
- && rm -rf /var/lib/apt/lists/*
+RUN apt-get update 
+# this list of deps is taken from the alarmdecoder README, with a few removed
+RUN apt-get install -y --no-install-recommends sendmail libffi-dev build-essential libssl-dev curl libpcre3-dev libpcre++-dev zlib1g-dev libcurl4-openssl-dev autoconf automake avahi-daemon locales dosfstools sqlite3 git sudo 
+RUN rm -rf /var/lib/apt/lists/*
 
 # Sane defaults for pip
 ENV PIP_NO_CACHE_DIR off
