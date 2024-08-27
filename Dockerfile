@@ -1,10 +1,9 @@
-FROM python:3.10.13-bookworm
+FROM python:2.7.14-alpine3.6
 #FROM python:2.7-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     # this list of deps is taken from the alarmdecoder README, with a few removed
-    sendmail libffi-dev build-essential libssl-dev curl libpcre3-dev zlib1g-dev libcurl4-openssl-dev autoconf automake avahi-daemon locales dosfstools sqlite3 git sudo \
-    #sendmail libffi-dev build-essential libssl-dev curl libpcre3-dev libpcre++-dev zlib1g-dev libcurl4-openssl-dev autoconf automake avahi-daemon locales dosfstools sqlite3 git sudo \
+    sendmail libffi-dev build-essential libssl-dev curl libpcre3-dev libpcre++-dev zlib1g-dev libcurl4-openssl-dev autoconf automake avahi-daemon locales dosfstools sqlite3 git sudo \
  && rm -rf /var/lib/apt/lists/*
 
 # Sane defaults for pip
