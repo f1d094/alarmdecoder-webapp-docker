@@ -1,3 +1,5 @@
+[![Docker Image CI](https://github.com/f1d094/alarmdecoder-webapp-docker/actions/workflows/docker-image.yml/badge.svg)](https://github.com/f1d094/alarmdecoder-webapp-docker/actions/workflows/docker-image.yml)
+
 # AlarmDecoder Webapp Dockerfile
 
 This is a Dockerfile for the [AlarmDecoder Webapp](https://github.com/nutechsoftware/alarmdecoder-webapp) project. It is built by following the build instructions in that project's README, with a few tweaks to adapt to the Docker environment.
