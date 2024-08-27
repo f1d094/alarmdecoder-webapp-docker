@@ -1,4 +1,5 @@
-FROM python:2.7-slim
+FROM python:2.7.18-buster
+#FROM python:2.7-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     # this list of deps is taken from the alarmdecoder README, with a few removed
