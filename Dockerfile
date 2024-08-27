@@ -1,10 +1,38 @@
-FROM python:2.7.18-buster
-#FROM python:2.7-slim
+FROM python:2.7-slim
+
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#     # this list of deps is taken from the alarmdecoder README, with a few removed
+#     sendmail libffi-dev build-essential libssl-dev curl libpcre3-dev libpcre++-dev zlib1g-dev libcurl4-openssl-dev autoconf automake avahi-daemon locales dosfstools sqlite3 git sudo \
+#  && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    # this list of deps is taken from the alarmdecoder README, with a few removed
-    sendmail libffi-dev build-essential libssl-dev curl libpcre3-dev libpcre++-dev zlib1g-dev libcurl4-openssl-dev autoconf automake avahi-daemon locales dosfstools sqlite3 git sudo \
- && rm -rf /var/lib/apt/lists/*
+  autoconf \
+  automake \
+  build-essential \
+  cmake \
+  cmake-data \
+  git \
+  gunicorn \
+  libcurl4-openssl-dev \
+  libffi-dev \
+  libpcre3-dev \
+  libpcre++-dev \
+  libssl-dev \
+  minicom \
+  miniupnpc \
+  nginx \
+  python2.7-dev \
+  python-dev \
+  python-httplib2 \
+  python-opencv \
+  python-pip \
+  python-virtualenv \
+  screen \
+  sendmail \
+  sqlite3 \
+  telnet \
+  vim \
+  zlib1g-dev
 
 # Sane defaults for pip
 ENV PIP_NO_CACHE_DIR off
