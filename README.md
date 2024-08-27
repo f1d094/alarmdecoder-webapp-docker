@@ -6,16 +6,20 @@ This is a Dockerfile for the [AlarmDecoder Webapp](https://github.com/nutechsoft
 
 ## Run Container
 
-The container is available pre-built on [Docker Hub](https://hub.docker.com/r/codekitchen/alarmdecoder-webapp/).
+The container is available pre-built on [Docker Hub](https://hub.docker.com/r/f1d094/alarmdecoder-webapp-docker/).
 
-```bash
-docker run --rm -p 5000:5000 --device=<device_id> codekitchen/alarmdecoder-webapp
+```
+podman run -d \
+  --name alarmdecoder-webapp \
+  --privileged \
+  --restart=unless-stopped \
+  -v /etc/localtime:/etc/localtime:ro \
+  -p 127.0.0.1:5000:5000 \
+  --device /dev:/dev \
+  f1d094/alarmdecoder-webapp-docker
 ```
 
-The container will need access to the AlarmDecoder hardware, replace
-`<device_id>` with the correct USB device, e.g. `--device=/dev/ttyUSB0`.
-
-You can then access AlarmDecoder at `http://<host_ip>:5000`.
+You can then access AlarmDecoder at `http://localhost:5000`. If you want to run this on a remote host it is recommended to use ssh tunnel ssh -L 5000:127.0.0.1:5000 <remotehost>
 
 ## Complete Setup
 
@@ -25,24 +29,3 @@ up an nginx reverse proxy in front of the app.
 You'll also likely want to created a named or mounted volume to persist the
 configuration and logging, which lives at `/opt/alarmdecoder-webapp/instance`.
 
-A complete docker-compose configuration might look something like:
-
-```yaml
-proxy:
-  image: jwilder/nginx-proxy
-  ports:
-    - 80:80
-    - 443:443
-  volumes:
-    - /var/run/docker.sock:/tmp/docker.sock:ro
-    - my-certs:/etc/nginx/certs
-
-alarmdecoder:
-  image: codekitchen/alarmdecoder-webapp
-  environment:
-    VIRTUAL_HOST: alarm.example.com
-  devices:
-    - /dev/ttyUSB0
-  volumes:
-    - alarmdecoder:/opt/alarmdecoder-webapp/instance
-```
