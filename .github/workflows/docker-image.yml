@@ -47,7 +47,8 @@ jobs:
       with:
         context: "." 
         file: "Dockerfile"
-        platforms: linux/arm64,linux/amd64
+        platforms: linux/arm64
+        #platforms: linux/arm64,linux/amd64
         push: true
         tags: |
           f1d094/alarmdecoder-webapp-docker:${{steps.getrefs.outputs.sha12}}, f1d094/alarmdecoder-webapp-docker:latest
